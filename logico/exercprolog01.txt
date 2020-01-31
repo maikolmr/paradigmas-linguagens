@@ -1,0 +1,81 @@
+Exercícios Prolog 01 
+
+
+     1) Assumindo que cada disciplina tem um único código  (isto é, por exemplo, lp01, top02, etc.), crie uma base de dados no Prolog para representar:
+
+        a. qual hora do dia a disciplina é ministrada (por exemplo, 'ab','cd', 'ef');
+
+        b. qual dia da semana ela é ministrada ('terça', por exemplo. Para simplificar, supor que as disciplinas são ministradas em um único dia);
+
+        c. a sala em que a disciplina é ministrada;
+
+        d. o nome do professor que a ministra;
+
+        e. quantos alunos estão inscritos nela. 
+
+
+     (Exemplos: hora(lp01,ab) e dia(top02,terça) representam que a disciplina lp01 é ministrada na terça, no período ab) 
+
+
+     Escreva consultas para saber:
+
+        a. quais disciplinas são ministradas na sexta;
+
+        b. que disciplina é ministrada por um certo professor em particular;
+
+        c. que disciplinas são ministradas no período cd;
+
+        d. que disciplinas acontecem no mesmo período;
+
+        e. qual disciplina está em uma certa sala e num certo horário em particular;
+
+        f. se um professor estiver ministrando em um certo horário, onde o professor está. 
+
+
+     Escreva regras para os seguintes predicados, acrescentando-as no programa:
+
+        a. quando(Dis, Dia, Hor), que deve responder "yes" quando a disciplina Dis acontecer no dia Dia e no horário Hor.
+
+        b. quando_onde_quem(Dis, Dia, Hor, Sala, Quem), que deve ser verdadeiro se Dis, acontece no dia Dia, no horário Hor, na sala Sala e ministrada por Quem. 
+
+
+     2) Considere uma nova maneira de representar os mesmos fatos do exercício anterior, como por exemplo: 
+
+
+     disciplina(lp02, sexta, 'ab', 28, victor).
+
+     disciplina(top03, sexta, 'cd', 38, debora).
+
+     etc. 
+
+
+     ou seja cada disciplina é representada por um predicado de aridade 5 (codigo, dia, horário, número de alunos e professor). 
+
+
+     Escreva regras para definir os seguintes predicados: 
+
+
+        a. professor(D, P) - se P é o professor da disciplina D;
+
+        b. dia(Dis, Dia) - se Dia é o dia da disciplina Dis;
+
+        c. tamanho(Dis, Tam) - se Tam, é o tamanho (número de alunos) da disciplina Dis. 
+
+
+     3) Implementar um sistema de encontros por computador:
+
+        a. represente o interesse das pessoas por meio de fatos, por exemplo: gosta_de( manuel, futebol).
+
+        b. assuma que duas pessoas são companhias em potencial se eles tem um interesse em comum e escreva uma regra para verificar isso.
+
+
+     4) Escreva um programa PROLOG capaz de escrever números de um intervalo dado, por exemplo, a consulta abaixo e seu resultado:
+
+     ?- conta_up(7,13).
+
+     7 8 9 10 11 12 13 
+
+
+     5) Modifique o programa anterior para ser capaz de lidar com consultas em que os valores fornecidos para os intervalos sejam "incorretos", como, por exemplo conta_up(7,5) em que o valor inicial é maior que o final. O programa deve detectar isso e gerar uma mensagem de erro (por exemplo). 
+
+     6) Abra o arquivo listas.pl e teste cada predicado indicando qual operação ele realiza.

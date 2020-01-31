@@ -1,0 +1,116 @@
+package br.gov.serpro.siconfi.domain.enumeration;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.faces.model.SelectItem;
+
+/**
+ * Enum para os tipos de esfera.
+ * @author Ernandes Mourao Junior (ernandes.mourao@serpro.gov.br)
+ */
+public enum TipoConsorcioEnum implements SiconfiEnum<String> {
+
+	CONSORCIO_MUN("01", bundle.getString("tipo.consorcio.municipios"), EsferaEnum.MUNICIPAL),
+	CONSORCIO_EST_E_MUN("02", bundle.getString("tipo.consorcio.estados.municipios"), EsferaEnum.MUNICIPAL, EsferaEnum.ESTADUAL),
+	CONSORCIO_EST_OU_EST_DF("03", bundle.getString("tipo.consorcio.estados.df"), EsferaEnum.ESTADUAL, EsferaEnum.DF),
+	CONSORCIO_EST_E_OU_DF_MUN("04", bundle.getString("tipo.consorcio.estados.df.municipios"), EsferaEnum.MUNICIPAL, EsferaEnum.ESTADUAL, EsferaEnum.DF),
+	CONSORCIO_DF_MUN("05", bundle.getString("tipo.consorcio.df.municipios"), EsferaEnum.MUNICIPAL, EsferaEnum.DF),
+	CONSORCIO_UNIAO_EST_E_OU_DF("06", bundle.getString("tipo.consorcio.uniao.estados.df"), EsferaEnum.UNIAO, EsferaEnum.ESTADUAL, EsferaEnum.DF),
+	CONSORCIO_UNIAO_EST_E_OU_DF_E_MUN("07", bundle.getString("tipo.consorcio.uniao.estados.df.municipios"), EsferaEnum.MUNICIPAL, EsferaEnum.ESTADUAL, EsferaEnum.UNIAO, EsferaEnum.DF);
+
+	/**
+	 * Código.
+	 */
+	private String codigo;
+
+	/**
+	 * Descrição.
+	 */
+	private String descricao;
+	
+	/**
+	 * Lista de esferas.
+	 */
+	private EsferaEnum[] enums;
+
+    /**
+     * Retorna o item do enum para um determinado código.
+     * @param codigo Código.
+     * @return Item do enum.
+     */
+    public static TipoConsorcioEnum fromCodigo(String codigo) {
+        for (TipoConsorcioEnum enumItem : values()) {
+            if (enumItem.codigo.equals(codigo)) {
+                return enumItem;
+            }
+        }
+        //
+        return null;
+    }
+
+    /**
+     * Construtor.
+     * @param codigo Código.
+     * @param descricao Descrição.
+     */
+    private TipoConsorcioEnum(String codigo, String descricao, EsferaEnum...enums) {
+        this.codigo = codigo;
+        this.descricao = descricao;
+        this.enums = enums;
+    }
+
+    /**
+     * @see br.gov.serpro.siconfi.domain.enumeration.SiconfiEnum#getCodigo()
+     */
+    @Override
+	public String getCodigo() {
+        return codigo;
+    }
+
+    /**
+     * @see br.gov.serpro.siconfi.domain.enumeration.SiconfiEnum#getDescricao()
+     */
+    @Override
+	public String getDescricao() {
+    	return descricao;
+    }
+    
+	public EsferaEnum[] getEnums() {
+		return enums;
+	}
+
+	/**
+     * Retorna todos os valures no formato para popular as listas no XHTML.
+     * @return Valores.
+     */
+    public static List<SelectItem> getValues() {
+        List<SelectItem> items = new ArrayList<SelectItem>();
+        //
+        for (TipoConsorcioEnum status : TipoConsorcioEnum.values()) {
+        	items.add(new SelectItem(status, status.getDescricao()));
+        }
+        //
+        return items;
+    }
+    
+    /**
+     * Retorna todos os valures no formato para popular as listas no XHTML.
+     * @return Valores.
+     */
+    public static List<SelectItem> getValuesEsfera(String codigoEsfera) {
+        List<SelectItem> items = new ArrayList<SelectItem>();
+        //
+        for (TipoConsorcioEnum tipo : TipoConsorcioEnum.values()) {
+        	for (EsferaEnum esfera : tipo.getEnums()) {
+        		if (EsferaEnum.fromCodigo(codigoEsfera).equals(esfera)){
+            		items.add(new SelectItem(tipo, tipo.getDescricao()));
+            		break;
+            	}
+			}
+        }
+        //
+        return items;
+    }
+}
+

@@ -1,0 +1,5 @@
+ocorre(_,[],0).
+ocorre(H, [H|T], N) :- 	
+    ocorre(H, T, Rabo), N is Rabo+1.
+ocorre(H, [_|T], N) :- 	
+    ocorre(H, T, Rabo), N is Rabo.

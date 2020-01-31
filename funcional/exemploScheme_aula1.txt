@@ -1,0 +1,14 @@
+Quadrado de cada elemento ==============
+
+
+(define square
+  (lambda (n)
+    (* n n)))
+
+
+Potência =============================
+(define power
+  (lambda (n k)
+    (if (= k 1)
+        n
+        (* n (power n (- k 1))))))

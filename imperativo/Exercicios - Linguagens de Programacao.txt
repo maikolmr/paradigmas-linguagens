@@ -1,0 +1,53 @@
+with Ada.Text_Io; 
+use Ada.Text_Io;
+procedure Prog_10_Formato_Datas is
+  American_Data : String (1 .. 8);
+  British_Data : String (1 .. 8) := " / / ";
+  ISO_Data : String (1 .. 10) := "20 - - ";
+begin
+  Put_Line ("Forneça uma data no formato mm/dd/yy (americano)");
+
+  Get(American_Data);
+  British_Data (1..2) := American_Data (4..5);
+  British_Data (4..5) := American_Data (1..2);
+  British_Data (7..8) := American_Data (7..8);
+
+  Put_Line ("A forma britânica da data é:"); Put_Line (British_Data);
+  ISO_Data (3..4) := American_Data (7..8);
+  ISO_Data (6..7) := American_Data (1..2);
+  ISO_Data (9..10) := American_Data (4..5);
+
+  Put_Line ("A forma ISO da data é:"); Put_Line (ISO_Data);
+end Prog_10_Formato_Datas;
+
+
+Forneça uma data no formato mm/dd/yy (americano)
+26/03/01
+A forma britânica da data é:
+03/26/01
+A forma ISO da data é:
+2001-26-03
+
+Exemplo de Exercício Assembler
+
+43 61 72 6E 61 76 61 6C-20 32 30 30 36 24  Carnaval 2006$
+
+167C:0100 B409          MOV     AH,09
+167C:0102 BA0002        MOV     DX,0200
+167C:0105 CD21          INT     21
+167C:0107 EBFC          JMP     0105
+167C:0109 CD20          INT     20
+
+Preencher a Tela
+
+80x24 = 1920/13 = 147 <=> 93
+
+167C:0100 B409          MOV     AH,09
+167C:0102 BA0002        MOV     DX,0200
+167C:0105 B99300        MOV     CX,0093
+167C:0108 CD21          INT     21
+167C:010A E2FC          LOOP    0108
+167C:010C CD20          INT     20
+
+
+
